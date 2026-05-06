@@ -426,6 +426,51 @@ selected apt
 
 
 
+<img width="1740" height="746" alt="finding exploit form gitbin" src="https://github.com/user-attachments/assets/398cba5a-e801-4a03-bb1d-421958444480" />
+
+
+
+
+And selected the last exploit so let's try it out and see if it would work
+
+
+
+
+
+
+
+<img width="725" height="80" alt="first try of root escalation" src="https://github.com/user-attachments/assets/3e7506aa-e236-4010-8ad6-1570b8e77a9e" />
+
+
+
+And unfortunately I just get an error and that is because we do not have sudo privilege to **apt-get** but we only have sudo privilege to **apt** so after removing the get and just trying the exploit **sudo apt update -o APT::Update::Pre-Invoke::=/bin/sh**, we now have a root shell and can finally access our flag
+
+
+
+
+
+
+
+
+<img width="710" height="200" alt="root flag" src="https://github.com/user-attachments/assets/6ac718bf-73c2-447d-9df5-416746fb63ef" />
+
+
+Great job if you came all this way we now have learnt how to pivot and evade network firewalls 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
