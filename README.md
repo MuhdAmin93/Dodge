@@ -1,13 +1,24 @@
 # Dodge
 Dodge thm  beginner friendly walkthrough
-Test your pivoting and network evasion skills.
+test your pivoting and network evasion skills.
 
 **Enumeration**
+
+
+
+
 
 First we start with an nmap scan to see which ports and services are running 
 
 
+
+
+
+
 Nmap Scan 
+
+
+
 
 
 
@@ -19,6 +30,11 @@ Using the command **nmap -sC -sV [ip]**
 
 
 <img width="732" height="431" alt="first nmap scan" src="https://github.com/user-attachments/assets/a4d2d149-1d49-4945-9c54-ae37bf274134" />
+
+
+
+
+
 
 
 
@@ -51,7 +67,24 @@ Great with the nmap scan we can now see that three ports are open:
 
 
 
+
+
+
+
+
+
+
+
 Nmap also gave a list of subdomain
+
+
+
+
+
+
+
+
+
 
 
 
@@ -60,7 +93,24 @@ Nmap also gave a list of subdomain
 
 
 
+
+
+
+
+
+
+
+
+
 Now lets add these subdomans to our **/etc/hosts****** folder using the command **nano /etc/hosts**
+
+
+
+
+
+
+
+
 
 
 
@@ -73,7 +123,25 @@ Now lets add these subdomans to our **/etc/hosts****** folder using the command 
 
 
 
+
+
+
+
+
+
+
+
+
 Out of these subdomains we can see some of them have some of the subdomains have some information in them and not just 404 error
+
+
+
+
+
+
+
+
+
 
 
 
@@ -85,13 +153,43 @@ Out of these subdomains we can see some of them have some of the subdomains have
 
 
 
+
+
+
+
+
+
+
+
 <img width="911" height="787" alt="dodge" src="https://github.com/user-attachments/assets/57880b27-cfc4-4b5b-bef3-38d8ab1167c3" />
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 We can also see the **https://dev.dodge.thm**
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -105,7 +203,21 @@ We can also see the **https://dev.dodge.thm**
 
 
 
+
+
+
+
+
+
+
+
 We can also see the **https://netops-dev.dodge.thm**
+
+
+
+
+
+
 
 
 
@@ -116,7 +228,31 @@ We can also see the **https://netops-dev.dodge.thm**
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 Interesting here we can see the page is blank so let's look at the source code and see what is on the website 
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -126,7 +262,30 @@ Interesting here we can see the page is blank so let's look at the source code a
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 You can see from the source code that in the styling the display is none, so that is why we are unable to see anything so let's remove the styling of display none to see what is on the website
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -143,7 +302,31 @@ You can see from the source code that in the styling the display is none, so tha
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 As you can see this is a form page and we can upload a file into it, the first thought that comes to my mind is uploading an exploit to get a reverse shell but unfortunately the exploit did not run.
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -155,11 +338,51 @@ We can also see there is a firewall.js file
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 <img width="450" height="267" alt="source code interesting firewall" src="https://github.com/user-attachments/assets/e93240cc-4847-4f91-9387-9ae83d0c8fce" />
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 So let's see what is on the firewall.js file 
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -171,7 +394,29 @@ So let's see what is on the firewall.js file
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ok nothing interesting but if you notice carefully we have another php file that is been fetched firewall10110.php
+
+
+
+
+
+
+
+
 
 
 
@@ -184,7 +429,29 @@ So lets check it out and see what it contains
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 <img width="945" height="695" alt="accessing firewall10110 dir" src="https://github.com/user-attachments/assets/0f0667d3-358b-4b2e-af2f-08ecde29b070" />
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -195,7 +462,31 @@ We can run simple commands like **sudo ufw status** and for some unknown reason 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <img width="713" height="683" alt="running command to disable firewall" src="https://github.com/user-attachments/assets/5fbefc7b-cde8-44a2-8f2e-1376e2ec40b6" />
+
+
+
+
+
+
+
+
+
 
 
 
@@ -211,7 +502,38 @@ And it worked now you can see below it says firewall stopped and disabled
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 <img width="658" height="608" alt="firwall disabled" src="https://github.com/user-attachments/assets/2dc85163-3491-4bd0-95da-3cf0be879d1c" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -223,7 +545,30 @@ Now to confirm that the firewall is diabled lets rum another nmap scan to see if
 
 
 
+
+
+
+
+
+
+
+
+
+
 <img width="721" height="416" alt="second nmap scan with ftp" src="https://github.com/user-attachments/assets/90e225a0-e96b-44af-a3c3-b01ff0ca0717" />
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -238,7 +583,34 @@ Great so now ftp port 21 is open, so let connect to the machine using fhe ftp co
 
 
 
+
+
+
+
+
+
+
+
+
+
 <img width="700" height="395" alt="ftp into dodge" src="https://github.com/user-attachments/assets/6ed21ab7-cb85-4c88-881a-cf53c088f02e" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -255,11 +627,53 @@ Now if we run the command **ls** we can see the file user.txt which holds our fi
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 <img width="723" height="432" alt="trying to see hidden files in ftp" src="https://github.com/user-attachments/assets/b8613859-7471-414f-94d2-32d1b3db1e42" />
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 As you can see now we have .ssh directory let's cd into it and now we have our **id_rsa** key but unfortunately we cannot get it because we don't have the permission but lucky for us we can get the **id_rsa_backup** key and the **authorized_key** so let's get them using the command **get authorized_keys** and **get id_rsa_backup **respectively
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -273,7 +687,42 @@ As you can see now we have .ssh directory let's cd into it and now we have our *
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 After getting the authorized_keys, now I can cat the file and see its contentwhich I can see **challenger@thm** which I am guessing is the name of the user with the ssh key
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -291,7 +740,37 @@ So let's try to login with the name challenger and our private key intially I tr
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <img width="745" height="414" alt="sshing into challenger" src="https://github.com/user-attachments/assets/da6800dc-de56-42f6-90c4-c5ccd349d6a6" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -310,7 +789,38 @@ Now we can run **ls** again and cat our user.txt file and we have our first flag
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <img width="585" height="124" alt="first flag" src="https://github.com/user-attachments/assets/db9c43ce-fc03-4140-a2a7-1ea2b620c856" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -321,7 +831,38 @@ Greatttt job!!!!! we now have a flag, now for the root.txt file we definetly hav
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 If you remembered when we ran the command **ls -la** we also had a bash history directory so let's take a look at it and see what it contains 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -343,10 +884,49 @@ If you remembered when we ran the command **ls -la** we also had a bash history 
 
 
 
+
+
+
+
 <img width="605" height="251" alt="listing bash history" src="https://github.com/user-attachments/assets/93dbd560-6e02-49d6-ba06-e9a889ab0f45" />
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Now when we cat it we can see two interesting php files which I am guessing they are related to our site. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -363,11 +943,53 @@ lets find the files and see what their content using the find command **find / -
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 <img width="727" height="435" alt="interesting base64 encoding" src="https://github.com/user-attachments/assets/5490ca0c-28be-4f4a-8227-86948de90ebb" />
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Now let's decode the string using cyberchef and see 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -386,6 +1008,20 @@ Now let's decode the string using cyberchef and see
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Now we have an ssh username and password so lets escalate our privilege to cobra
 
 
@@ -394,7 +1030,46 @@ Now we have an ssh username and password so lets escalate our privilege to cobra
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <img width="694" height="436" alt="successful cobra login" src="https://github.com/user-attachments/assets/ef591b8b-9e47-4a23-9bbb-4abb6711ad95" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -410,7 +1085,45 @@ Now I'm logged in as cobra but still I can't cd into root also I checked it's ba
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <img width="720" height="167" alt="checking our sudo privilege" src="https://github.com/user-attachments/assets/29624950-6719-41ce-896b-4da880ddb8be" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -426,7 +1139,43 @@ selected apt
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <img width="1740" height="746" alt="finding exploit form gitbin" src="https://github.com/user-attachments/assets/398cba5a-e801-4a03-bb1d-421958444480" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -439,7 +1188,44 @@ And selected the last exploit so let's try it out and see if it would work
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <img width="725" height="80" alt="first try of root escalation" src="https://github.com/user-attachments/assets/3e7506aa-e236-4010-8ad6-1570b8e77a9e" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -452,7 +1238,48 @@ And unfortunately I just get an error and that is because we do not have sudo pr
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <img width="710" height="200" alt="root flag" src="https://github.com/user-attachments/assets/6ac718bf-73c2-447d-9df5-416746fb63ef" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 Great job if you came all this way we now have learnt how to pivot and evade network firewalls 
